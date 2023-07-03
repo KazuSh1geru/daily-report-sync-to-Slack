@@ -1,0 +1,2 @@
+# DailyReportSync_to_Slack
+日報を連携するスクリプト
