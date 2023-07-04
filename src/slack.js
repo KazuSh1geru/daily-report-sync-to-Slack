@@ -4,11 +4,8 @@ function autoSlack(e) {
   var webhook_url_1 = scriptProperties.getProperty('webhook_url_1');
   var webhook_url_2 = scriptProperties.getProperty('webhook_url_2');
 
-  // フォームのデータを取得する。すべての質問と回答を取得する
-  let itemResponses = e.response.getItemResponses();
-
   //Slackの本文
-  let body = createBodyFromResponse(itemResponses);
+  let body = createBodyFromResponse(e);
 
   // Slackへ送信する
   sendSlack(webhook_url_1, body);
@@ -27,4 +24,4 @@ function sendSlack(url, body) {
   };
 
   UrlFetchApp.fetch(url, options);
-}
+};

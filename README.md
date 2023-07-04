@@ -19,3 +19,6 @@ $ clasp clone <script_id>
 $ clasp push
 
 ```
+
+## 参照
+- [UserIdの取得](https://simple-josys.hatenablog.com/entry/2020/04/29/233859#OAuth--Permissions)
