@@ -1,8 +1,8 @@
 function getSlackUserIdByEmail(email, token) {
     var url = "https://slack.com/api/users.lookupByEmail";
     var payload = {
-      'email': email,
-      'token': token
+        'email': email,
+        'token': token
     };
     var options = {
         "method" : "GET",
@@ -21,12 +21,4 @@ function getSlackUserIdByEmail(email, token) {
         console.log('Error: ' + data.error);
         return null;
     }
-}
-
-function main() {
-    let email = 'js.a.kazu.1122@gmail.com';
-    // let token = scriptProperties.getProperty('oauth_1');
-    let token = 'xoxb-5008966560899-5531427168817-QLLOzyNA8c4E8AJOqv039YYo';
-    value = getSlackUserIdByEmail(email, token);
-    console.log(value);
-}
+};
