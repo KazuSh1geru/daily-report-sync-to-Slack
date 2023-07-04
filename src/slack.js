@@ -14,9 +14,7 @@ function autoSlack(e) {
 	var scriptProperties = PropertiesService.getScriptProperties();
 	for (var i = 0; i < property_keys_list.length; i++) {
 		var property_keys = property_keys_list[i];
-		var webhook_url = scriptProperties.getProperty(
-			property_keys.webhook_url,
-		);
+		var webhook_url = scriptProperties.getProperty(property_keys.webhook_url);
 		var token = scriptProperties.getProperty(property_keys.oauth);
 		// Slackの本文
 		var body = createBodyFromResponse(e, token);
