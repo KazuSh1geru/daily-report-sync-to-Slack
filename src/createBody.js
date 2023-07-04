@@ -20,10 +20,7 @@ function createBodyFromResponse(e) {
     let email = getEmailFromEvent(e);
     let userId = getSlackUserIdByEmail(email, token);
     // 本文を作成
-    var body = `\n<@${userId}>さんが${sendDateFormatted}の日報を投稿しました\n\n${sendReport}`
-    // var body = "\n@" + userId + "さんが" + sendDateFormatted + "の日報を投稿しました\n"
-    //     + "\n"
-    //     + sendReport;
+    let body = `\n<@${userId}>さんが${sendDateFormatted}の日報を投稿しました\n\n${sendReport}`
     return body;
 };
 

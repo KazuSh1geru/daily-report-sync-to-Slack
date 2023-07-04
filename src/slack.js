@@ -4,10 +4,6 @@ function autoSlack(e) {
   var webhook_url_1 = scriptProperties.getProperty('webhook_url_1');
   var webhook_url_2 = scriptProperties.getProperty('webhook_url_2');
 
-  // フォームのデータを取得する。すべての質問と回答を取得する
-  // let response = e.response;
-  // let itemResponses = response.getItemResponses();
-
   //Slackの本文
   let body = createBodyFromResponse(e);
 
