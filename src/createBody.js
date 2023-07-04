@@ -5,7 +5,7 @@ function formatDate(dateString) {
     return `${month}月${day}日`;
 };
 
-function createBodyFromResponse(e) {
+function createBodyFromResponse(e, token) {
     // フォームのデータを取得する。すべての質問と回答を取得する
     let itemResponses = e.response.getItemResponses();
 
@@ -14,8 +14,9 @@ function createBodyFromResponse(e) {
     let sendDateFormatted = formatDate(sendDate);
     let sendReport = itemResponses[1].getResponse();
 
-    var scriptProperties = PropertiesService.getScriptProperties();
-    let token = scriptProperties.getProperty('oauth_1');
+    // var scriptProperties = PropertiesService.getScriptProperties();
+    // // let token = scriptProperties.getProperty('oauth_pd');
+    // let token = scriptProperties.getProperty('oauth_reskill');
 
     let email = getEmailFromEvent(e);
     let userId = getSlackUserIdByEmail(email, token);

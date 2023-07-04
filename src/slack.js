@@ -1,16 +1,36 @@
 function autoSlack(e) {
   // Slackの宛先
+  const property_keys_list = [
+    {
+      webhook_url: 'webhook_url_pd',
+      oauth: 'oauth_pd',
+    },
+    {
+      webhook_url: 'webhook_url_reskill',
+      oauth: 'oauth_reskill',
+    },
+  ]
+
   var scriptProperties = PropertiesService.getScriptProperties();
-  var webhook_url_1 = scriptProperties.getProperty('webhook_url_1');
-  var webhook_url_2 = scriptProperties.getProperty('webhook_url_2');
+  for (var i = 0; i < property_keys_list.length; i++) {
+    var property_keys = property_keys_list[i];
+    var webhook_url = scriptProperties.getProperty(property_keys.webhook_url);
+    var token = scriptProperties.getProperty(property_keys.oauth);
+    // Slackの本文
+    var body = createBodyFromResponse(e, token);
+    // Slackへ送信する
+    sendSlack(webhook_url, body);
+  }
+  // var webhook_url_pd = scriptProperties.getProperty('webhook_url_pd');
+  // var webhook_url_reskill = scriptProperties.getProperty('webhook_url_reskill');
 
-  //Slackの本文
-  let body = createBodyFromResponse(e);
+  // //Slackの本文
+  // let body = createBodyFromResponse(e);
 
-  // Slackへ送信する
-  sendSlack(webhook_url_1, body);
-  sendSlack(webhook_url_2, body);
-}
+  // // Slackへ送信する
+  // // sendSlack(webhook_url_pd, body);
+  // sendSlack(webhook_url_reskill, body);
+};
 
 function sendSlack(url, body) {
   let data = {

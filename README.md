@@ -20,5 +20,11 @@ $ clasp push
 
 ```
 
+- Slackアプリの作成
+- スクリプトプロパティの設定
+    - SlackのOAuth設定
+    - Slackのwebhook設定
+
+
 ## 参照
 - [UserIdの取得](https://simple-josys.hatenablog.com/entry/2020/04/29/233859#OAuth--Permissions)
