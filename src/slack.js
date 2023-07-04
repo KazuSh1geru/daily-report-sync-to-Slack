@@ -21,15 +21,6 @@ function autoSlack(e) {
     // Slackへ送信する
     sendSlack(webhook_url, body);
   }
-  // var webhook_url_pd = scriptProperties.getProperty('webhook_url_pd');
-  // var webhook_url_reskill = scriptProperties.getProperty('webhook_url_reskill');
-
-  // //Slackの本文
-  // let body = createBodyFromResponse(e);
-
-  // // Slackへ送信する
-  // // sendSlack(webhook_url_pd, body);
-  // sendSlack(webhook_url_reskill, body);
 };
 
 function sendSlack(url, body) {

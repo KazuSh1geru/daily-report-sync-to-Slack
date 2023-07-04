@@ -14,10 +14,6 @@ function createBodyFromResponse(e, token) {
     let sendDateFormatted = formatDate(sendDate);
     let sendReport = itemResponses[1].getResponse();
 
-    // var scriptProperties = PropertiesService.getScriptProperties();
-    // // let token = scriptProperties.getProperty('oauth_pd');
-    // let token = scriptProperties.getProperty('oauth_reskill');
-
     let email = getEmailFromEvent(e);
     let userId = getSlackUserIdByEmail(email, token);
     // 本文を作成
