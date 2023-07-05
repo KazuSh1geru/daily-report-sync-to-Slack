@@ -7,27 +7,34 @@ function createBodyFromResponse(e, token) {
 
 	let free_space = itemResponses[1].getResponse();
 
-	let goalsetting_title = itemResponses[2].getItem().getTitle();
-	let goalsetting_response = itemResponses[2].getResponse();
+	let stretch_title = itemResponses[2].getItem().getTitle();
+	let stretch_response = itemResponses[2].getResponse();
 
-	let done_title = itemResponses[3].getItem().getTitle();
-	let done_response = itemResponses[3].getResponse();
+	let goalsetting_title = itemResponses[3].getItem().getTitle();
+	let goalsetting_response = itemResponses[3].getResponse();
 
-	let face_title = itemResponses[4].getItem().getTitle();
-	let face_response = itemResponses[4].getResponse();
+	let done_title = itemResponses[4].getItem().getTitle();
+	let done_response = itemResponses[4].getResponse();
 
-	let think_title = itemResponses[5].getItem().getTitle();
-	let think_response = itemResponses[5].getResponse();
+	let face_title = itemResponses[5].getItem().getTitle();
+	let face_response = itemResponses[5].getResponse();
 
-	let tweet_title = itemResponses[6].getItem().getTitle();
-	let tweet_response = itemResponses[6].getResponse();
+	let think_title = itemResponses[6].getItem().getTitle();
+	let think_response = itemResponses[6].getResponse();
+
+	let tweet_title = itemResponses[7].getItem().getTitle();
+	let tweet_response = itemResponses[7].getResponse();
 
 	let email = getEmailFromEvent(e);
 	let userId = getSlackUserIdByEmail(email, token);
 	// 本文を作成
 	let body = `
 <@${userId}>さんが${sendDateFormatted}の日報を投稿しました
+
 ${free_space}
+
+${stretch_title}
+${stretch_response}
 
 ${goalsetting_title}
 ${goalsetting_response}
