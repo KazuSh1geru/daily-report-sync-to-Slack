@@ -23,6 +23,9 @@ function createBodyFromResponse(e, token) {
 	let tweet_response = itemResponses[6].getResponse();
 
 	let email = getEmailFromEvent(e);
+
+	var scriptProperties = PropertiesService.getScriptProperties();
+	var token = scriptProperties.getProperty(token);
 	let userId = getSlackUserIdByEmail(email, token);
 	// 本文を作成
 	let body = `
