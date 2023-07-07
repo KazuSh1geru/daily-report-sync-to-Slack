@@ -10,6 +10,13 @@ function autoSlack(e) {
 			oauth: 'oauth_reskill',
 		},
 	];
+	// デバッグ用
+	// const property_keys_list = [
+	// 	{
+	// 		webhook_url: 'webhook_url_test',
+	// 		oauth: 'oauth_pd',
+	// 	},
+	// ];
 
 	for (var i = 0; i < slack_workspace_oauth_list.length; i++) {
 		var property_keys = slack_workspace_oauth_list[i];
