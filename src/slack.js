@@ -9,12 +9,14 @@ function autoSlack(e) {
 			webhook_url: 'webhook_url_reskill',
 			oauth: 'oauth_reskill',
 		},
-		// デバッグ用
-		{
-			webhook_url: 'webhook_url_test',
-			oauth: 'oauth_pd',
-		},
 	];
+	// デバッグ用
+	// const property_keys_list = [
+	// 	{
+	// 		webhook_url: 'webhook_url_test',
+	// 		oauth: 'oauth_pd',
+	// 	},
+	// ];
 
 	var scriptProperties = PropertiesService.getScriptProperties();
 	for (var i = 0; i < property_keys_list.length; i++) {
