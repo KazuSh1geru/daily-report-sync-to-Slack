@@ -9,6 +9,11 @@ function autoSlack(e) {
 			webhook_url: 'webhook_url_reskill',
 			oauth: 'oauth_reskill',
 		},
+		// デバッグ用
+		{
+			webhook_url: 'webhook_url_test',
+			oauth: 'oauth_pd',
+		},
 	];
 
 	var scriptProperties = PropertiesService.getScriptProperties();
