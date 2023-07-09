@@ -1,25 +1,26 @@
-function autoSlack(e) {
-	// Slackの宛先
-	const slack_workspace_oauth_list = [
-		// {
-		// 	webhook_url: 'webhook_url_pd',
-		// 	oauth: 'oauth_pd',
-		// },
-		{
-			webhook_url: 'webhook_url_reskill',
-			oauth: 'oauth_reskill',
-		},
-	];
-	// デバッグ用
-	// const property_keys_list = [
-	// 	{
-	// 		webhook_url: 'webhook_url_test',
-	// 		oauth: 'oauth_pd',
-	// 	},
-	// ];
+// Slackの宛先
+// const slack_workspace_property_keys_list = [
+// 	{
+// 		webhook_url: 'webhook_url_pd',
+// 		oauth: 'oauth_pd',
+// 	},
+// 	{
+// 		webhook_url: 'webhook_url_reskill',
+// 		oauth: 'oauth_reskill',
+// 	},
+// ];
+// デバッグ用
+const slack_workspace_property_keys_list = [
+	{
+		webhook_url: 'webhook_url_test',
+		oauth: 'oauth_pd',
+	},
+];
 
-	for (var i = 0; i < slack_workspace_oauth_list.length; i++) {
-		var property_keys = slack_workspace_oauth_list[i];
+function autoSlack(e) {
+
+	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
+		var property_keys = slack_workspace_property_keys_list[i];
 		var webhook_url_key = property_keys.webhook_url;
 		var token_key = property_keys.oauth;
 		// Slackへ送信する
@@ -49,10 +50,14 @@ function sendSlack(e, token_key, webhook_url_key) {
 		let email = getEmailFromEvent(e);
 		let webhook_url = getPersonalWebhookUrlFromSheet(email);
 		UrlFetchApp.fetch(webhook_url, options);
+	} else if (webhook_url_key == 'webhook_url_test') {
+		var scriptProperties = PropertiesService.getScriptProperties();
+		var webhook_url = scriptProperties.getProperty(webhook_url_key);
+		UrlFetchApp.fetch(webhook_url, options);
 	}
 }
 
-//SpreadsheetからSlackのWebhook URLを取得する
+// SpreadsheetからSlackのWebhook URLを取得する
 function getPersonalWebhookUrlFromSheet(email) {
 	const config = {
 		sheet_id: '1Mda9n-b2JmfQW4MbyhAS_LoBTn-d3C-30VOshrrLD9k',
@@ -71,4 +76,22 @@ function getPersonalWebhookUrlFromSheet(email) {
 	}
 	console.log(email + 'さんのChannelへ送信できませんでした');
 	return null; // 見つからなかった場合はnullを返す
+}
+
+// getPersonalWebhookUrlFromSheetのデバッグ用
+function testGetPersonalWebhookUrlFromSheet() {
+	let email = 'takakusagi.kazushi@lmi.ne.jp'
+	let webhook_url = getPersonalWebhookUrlFromSheet(email);
+	console.log(webhook_url);
+}
+
+function testResponse(e) {
+	let token_key = slack_workspace_property_keys_list.oauth;
+	let body = createBodyFromResponse(e, token_key);
+	console.log(body);
+}
+
+function testCreateBodyFromResponse(e, token_key) {
+	let body = createBodyFromResponse(e, token_key);
+	console.log(body);
 }
