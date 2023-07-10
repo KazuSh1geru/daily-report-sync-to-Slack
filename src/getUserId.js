@@ -1,5 +1,10 @@
-function getSlackUserIdByEmail(email, token) {
+function getSlackUserIdByEmail(email, token_key) {
 	var url = 'https://slack.com/api/users.lookupByEmail';
+	console.log('token_key: ' + token_key);
+	// tokenに変換する
+	var scriptProperties = PropertiesService.getScriptProperties();
+	var token = scriptProperties.getProperty(token_key);
+
 	var payload = {
 		email: email,
 		token: token,

@@ -1,10 +1,10 @@
-function createBodyFromResponse(e, token) {
+function createBodyFromResponse(e, token_key) {
 	// フォームのデータを取得する。すべての質問と回答を取得する
 	let itemResponses = e.response.getItemResponses();
 
 	// user_idを取得する
 	let email = getEmailFromEvent(e);
-	let userId = getSlackUserIdByEmail(email, token);
+	let userId = getSlackUserIdByEmail(email, token_key);
 	// 必要なデータを抽出する
 	let sendDate = itemResponses[0].getResponse();
 	let sendDateFormatted = formatDate(sendDate);

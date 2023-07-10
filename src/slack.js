@@ -13,6 +13,10 @@
 const slack_workspace_property_keys_list = [
 	{
 		webhook_url: 'webhook_url_test',
+		oauth: 'oauth_reskill',
+	},
+	{
+		webhook_url: 'webhook_url_pd_test',
 		oauth: 'oauth_pd',
 	},
 ];
@@ -42,19 +46,18 @@ function sendSlack(e, token_key, webhook_url_key) {
 	};
 
 	// 送信チャンネルを分岐させる
-	if (webhook_url_key == 'webhook_url_pd') {
+	if (token_key == 'oauth_pd') {
 		var scriptProperties = PropertiesService.getScriptProperties();
 		var webhook_url = scriptProperties.getProperty(webhook_url_key);
 		UrlFetchApp.fetch(webhook_url, options);
-	} else if (webhook_url_key == 'webhook_url_reskill') {
+	} else if (token_key == 'oauth_reskill') {
 		let email = getEmailFromEvent(e);
-		let webhook_url = getPersonalWebhookUrlFromSheet(email);
+		var webhook_url = getPersonalWebhookUrlFromSheet(email);
 		UrlFetchApp.fetch(webhook_url, options);
-	} else if (webhook_url_key == 'webhook_url_test') {
-		var scriptProperties = PropertiesService.getScriptProperties();
-		var webhook_url = scriptProperties.getProperty(webhook_url_key);
-		UrlFetchApp.fetch(webhook_url, options);
+	} else {
+		console.log(`存在しないtoken_key: ${token_key}Slackへ送信できませんでした`);
 	}
+	console.log('webhook: ' + webhook_url);
 }
 
 // SpreadsheetからSlackのWebhook URLを取得する
@@ -87,11 +90,6 @@ function testGetPersonalWebhookUrlFromSheet() {
 
 function testResponse(e) {
 	let token_key = slack_workspace_property_keys_list.oauth;
-	let body = createBodyFromResponse(e, token_key);
-	console.log(body);
-}
-
-function testCreateBodyFromResponse(e, token_key) {
 	let body = createBodyFromResponse(e, token_key);
 	console.log(body);
 }
