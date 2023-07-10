@@ -25,6 +25,12 @@ $ clasp push
     - SlackのOAuth設定
     - Slackのwebhook設定
 
+## 注意
+- SpreadsheetAppの手動承認を毎回テストする
 
 ## 参照
 - [UserIdの取得](https://simple-josys.hatenablog.com/entry/2020/04/29/233859#OAuth--Permissions)
+
+- https://developers.google.com/apps-script/reference/spreadsheet?hl=ja
+
+
