@@ -49,6 +49,8 @@ function sendSlack(e, token_key, webhook_url_key) {
 		var scriptProperties = PropertiesService.getScriptProperties();
 		var webhook_url = scriptProperties.getProperty(webhook_url_key);
 		UrlFetchApp.fetch(webhook_url, options);
+		// 日報投稿ログを記録する
+		addRowToSpreadsheet(e);
 	} else if (token_key == 'oauth_reskill') {
 		let email = getEmailFromEvent(e);
 		var webhook_url = getPersonalWebhookUrlFromSheet(email);
@@ -78,6 +80,24 @@ function getPersonalWebhookUrlFromSheet(email) {
 	}
 	console.log(email + 'さんのChannelへ送信できませんでした');
 	return null; // 見つからなかった場合はnullを返す
+}
+
+function addRowToSpreadsheet(e) {
+	const spreadsheetId = "15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw";  // 追加するスプレッドシートのIDを指定
+	const sheetName = "元データ_投稿";  // 追加する行のあるシートの名前を指定
+
+	var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+	var sheet = spreadsheet.getSheetByName(sheetName);
+
+	let sendDateFormatted = getDateFormated(e);
+
+	const channel_id = "<#C0547T4KK61>";  // 追加する行のデータを指定
+	const group_name = "23卒";  // 追加する行のデータを指定
+	let email = getEmailFromEvent(e);
+	var newRowData = [sendDateFormatted, channel_id, group_name, email];  // 追加する行のデータを指定
+
+	sheet.appendRow(newRowData);
+	console.log("新しい行が追加されました。");
 }
 
 // getPersonalWebhookUrlFromSheetのデバッグ用
