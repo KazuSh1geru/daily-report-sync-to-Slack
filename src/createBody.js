@@ -6,8 +6,8 @@ function createBodyFromResponse(e, token_key) {
 	let email = getEmailFromEvent(e);
 	let userId = getSlackUserIdByEmail(email, token_key);
 	// 必要なデータを抽出する
-	let sendDate = itemResponses[0].getResponse();
-	let sendDateFormatted = formatDate(sendDate);
+	// let sendDate = itemResponses[0].getResponse();
+	let sendDateFormatted = getDateFormated(e);
 
 	let free_space = itemResponses[1].getResponse();
 
@@ -29,9 +29,13 @@ ${response}
 	return body;
 }
 
-function getEmailFromEvent(e) {
-	var respondentEmail = e.response.getRespondentEmail();
-	return respondentEmail;
+function getDateFormated(e) {
+	// フォームのデータを取得する。すべての質問と回答を取得する
+	let itemResponses = e.response.getItemResponses();
+	// 必要なデータを抽出する
+	let sendDate = itemResponses[0].getResponse();
+	let sendDateFormatted = formatDate(sendDate);
+	return sendDateFormatted;
 }
 
 function formatDate(dateString) {
@@ -39,4 +43,9 @@ function formatDate(dateString) {
 	const month = date.getMonth() + 1;
 	const day = date.getDate();
 	return `${month}月${day}日`;
+}
+
+function getEmailFromEvent(e) {
+	var respondentEmail = e.response.getRespondentEmail();
+	return respondentEmail;
 }
