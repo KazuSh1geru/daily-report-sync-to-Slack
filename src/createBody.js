@@ -35,15 +35,3 @@ function formatDate(dateString) {
 	const day = date.getDate();
 	return `${month}月${day}日`;
 }
-
-function getEmailFromEvent(e) {
-	// var response = e.response;
-	var respondentEmail = e.response.getRespondentEmail();
-	return respondentEmail;
-}
-
-function onFormSubmit(e) {
-	var email = getEmailFromEvent(e);
-	Logger.log('email: ' + email);
-	Logger.log('response: ' + e.response);
-}

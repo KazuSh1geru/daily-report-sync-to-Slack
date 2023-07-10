@@ -86,9 +86,3 @@ function testGetPersonalWebhookUrlFromSheet() {
 	let webhook_url = getPersonalWebhookUrlFromSheet(email);
 	console.log(webhook_url);
 }
-
-function testResponse(e) {
-	let token_key = slack_workspace_property_keys_list.oauth;
-	let body = createBodyFromResponse(e, token_key);
-	console.log(body);
-}
