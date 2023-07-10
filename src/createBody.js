@@ -29,6 +29,11 @@ ${response}
 	return body;
 }
 
+function getEmailFromEvent(e) {
+	var respondentEmail = e.response.getRespondentEmail();
+	return respondentEmail;
+}
+
 function formatDate(dateString) {
 	const date = new Date(dateString);
 	const month = date.getMonth() + 1;

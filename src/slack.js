@@ -1,25 +1,25 @@
 // Slackの宛先
-// const slack_workspace_property_keys_list = [
-// 	{
-// 		webhook_url: 'webhook_url_pd',
-// 		oauth: 'oauth_pd',
-// 	},
-// 	{
-// 		webhook_url: 'webhook_url_reskill',
-// 		oauth: 'oauth_reskill',
-// 	},
-// ];
-// デバッグ用
 const slack_workspace_property_keys_list = [
 	{
-		webhook_url: 'webhook_url_test',
-		oauth: 'oauth_reskill',
-	},
-	{
-		webhook_url: 'webhook_url_pd_test',
+		webhook_url: 'webhook_url_pd',
 		oauth: 'oauth_pd',
 	},
+	{
+		webhook_url: 'webhook_url_reskill',
+		oauth: 'oauth_reskill',
+	},
 ];
+// デバッグ用
+// const slack_workspace_property_keys_list = [
+// 	{
+// 		webhook_url: 'webhook_url_test',
+// 		oauth: 'oauth_reskill',
+// 	},
+// 	{
+// 		webhook_url: 'webhook_url_pd_test',
+// 		oauth: 'oauth_pd',
+// 	},
+// ];
 
 function autoSlack(e) {
 	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
