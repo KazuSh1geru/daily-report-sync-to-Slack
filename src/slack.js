@@ -1,27 +1,5 @@
-// Slackの宛先
-const slack_workspace_property_keys_list = [
-	{
-		webhook_url: 'webhook_url_pd',
-		oauth: 'oauth_pd',
-	},
-	{
-		webhook_url: 'webhook_url_reskill',
-		oauth: 'oauth_reskill',
-	},
-];
-// デバッグ用
-// const slack_workspace_property_keys_list = [
-// 	{
-// 		webhook_url: 'webhook_url_test',
-// 		oauth: 'oauth_reskill',
-// 	},
-// 	{
-// 		webhook_url: 'webhook_url_pd_test',
-// 		oauth: 'oauth_pd',
-// 	},
-// ];
-
 function autoSlack(e) {
+	let slack_workspace_property_keys_list = makeSlackWorkspacePropertyKeysList();
 	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
 		var property_keys = slack_workspace_property_keys_list[i];
 		var webhook_url_key = property_keys.webhook_url;
@@ -49,6 +27,7 @@ function sendSlack(e, token_key, webhook_url_key) {
 		var scriptProperties = PropertiesService.getScriptProperties();
 		var webhook_url = scriptProperties.getProperty(webhook_url_key);
 		UrlFetchApp.fetch(webhook_url, options);
+
 		// 日報投稿ログを記録する
 		addRowToSpreadsheet(e);
 	} else if (token_key == 'oauth_reskill') {
@@ -63,10 +42,7 @@ function sendSlack(e, token_key, webhook_url_key) {
 
 // SpreadsheetからSlackのWebhook URLを取得する
 function getPersonalWebhookUrlFromSheet(email) {
-	const config = {
-		sheet_id: '1Mda9n-b2JmfQW4MbyhAS_LoBTn-d3C-30VOshrrLD9k',
-		sheet_name: 'webhook_urls',
-	};
+	let config = makeWebhookUrlTableConfig();
 	var spreadsheet = SpreadsheetApp.openById(config.sheet_id);
 	var sheet = spreadsheet.getSheetByName(config.sheet_name);
 	var dataRange = sheet.getDataRange();
@@ -83,18 +59,22 @@ function getPersonalWebhookUrlFromSheet(email) {
 }
 
 function addRowToSpreadsheet(e) {
-	const spreadsheetId = '15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw'; // 追加するスプレッドシートのIDを指定
-	const sheetName = '元データ_投稿'; // 追加する行のあるシートの名前を指定
+	let config = makeSendingLogTableConfig();
 
-	var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
-	var sheet = spreadsheet.getSheetByName(sheetName);
+	var spreadsheet = SpreadsheetApp.openById(config.spreadsheetId);
+	var sheet = spreadsheet.getSheetByName(config.sheetName);
 
 	let sendDateFormatted = getDateFormated(e);
 
-	const channel_id = '<#C0547T4KK61>'; // 追加する行のデータを指定
-	const group_name = '23卒'; // 追加する行のデータを指定
 	let email = getEmailFromEvent(e);
-	var newRowData = [sendDateFormatted, channel_id, group_name, email]; // 追加する行のデータを指定
+	var newRowData = [
+		sendDateFormatted,
+		config.channelId,
+		config.groupName,
+		email,
+	]; // 追加する行のデータを指定
+
+	console.log(newRowData);
 
 	sheet.appendRow(newRowData);
 	console.log('新しい行が追加されました。');
