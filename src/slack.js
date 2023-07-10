@@ -83,27 +83,27 @@ function getPersonalWebhookUrlFromSheet(email) {
 }
 
 function addRowToSpreadsheet(e) {
-	const spreadsheetId = "15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw";  // 追加するスプレッドシートのIDを指定
-	const sheetName = "元データ_投稿";  // 追加する行のあるシートの名前を指定
+	const spreadsheetId = '15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw'; // 追加するスプレッドシートのIDを指定
+	const sheetName = '元データ_投稿'; // 追加する行のあるシートの名前を指定
 
 	var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
 	var sheet = spreadsheet.getSheetByName(sheetName);
 
 	let sendDateFormatted = getDateFormated(e);
 
-	const channel_id = "<#C0547T4KK61>";  // 追加する行のデータを指定
-	const group_name = "23卒";  // 追加する行のデータを指定
+	const channel_id = '<#C0547T4KK61>'; // 追加する行のデータを指定
+	const group_name = '23卒'; // 追加する行のデータを指定
 	let email = getEmailFromEvent(e);
-	var newRowData = [sendDateFormatted, channel_id, group_name, email];  // 追加する行のデータを指定
+	var newRowData = [sendDateFormatted, channel_id, group_name, email]; // 追加する行のデータを指定
 
 	sheet.appendRow(newRowData);
-	console.log("新しい行が追加されました。");
+	console.log('新しい行が追加されました。');
 }
 
 // getPersonalWebhookUrlFromSheetのデバッグ用
 function testGetPersonalWebhookUrlFromSheet() {
 	var scriptProperties = PropertiesService.getScriptProperties();
-	var email = scriptProperties.getProperty("test_email_address");
+	var email = scriptProperties.getProperty('test_email_address');
 
 	let webhook_url = getPersonalWebhookUrlFromSheet(email);
 	console.log(webhook_url);
