@@ -12,14 +12,14 @@ function makeSlackWorkspacePropertyKeysList() {
 	];
 	// デバッグ用
 	// let slack_workspace_property_keys_list = [
-	//     {
-	//         webhook_url: 'webhook_url_test',
-	//         oauth: 'oauth_reskill',
-	//     },
-	//     {
-	//         webhook_url: 'webhook_url_pd_test',
-	//         oauth: 'oauth_pd',
-	//     },
+	// 	{
+	// 		webhook_url: 'webhook_url_test',
+	// 		oauth: 'oauth_reskill',
+	// 	},
+	// 	{
+	// 		webhook_url: 'webhook_url_pd_test',
+	// 		oauth: 'oauth_pd',
+	// 	},
 	// ];
 	return slack_workspace_property_keys_list;
 }
@@ -36,10 +36,10 @@ function makeWebhookUrlTableConfig() {
 // 日報提出管理シートへの書き込みを行う
 function makeSendingLogTableConfig() {
 	let config = {
-		sheet_id: '15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw',
-		sheet_name: '元データ_投稿',
-		channel_id: '<#C0547T4KK61>',
-		group_name: '室付',
+		spreadsheetId: '15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw',
+		sheetName: '元データ_投稿',
+		channelId: '<#C0547T4KK61>',
+		groupName: '室付',
 	};
 	return config;
 }

@@ -6,7 +6,6 @@ function createBodyFromResponse(e, token_key) {
 	let email = getEmailFromEvent(e);
 	let userId = getSlackUserIdByEmail(email, token_key);
 	// 必要なデータを抽出する
-	// let sendDate = itemResponses[0].getResponse();
 	let sendDateFormatted = getDateFormated(e);
 
 	let free_space = itemResponses[1].getResponse();

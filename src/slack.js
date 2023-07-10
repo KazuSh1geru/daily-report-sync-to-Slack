@@ -1,26 +1,3 @@
-// Slackの宛先
-const slack_workspace_property_keys_list = [
-	{
-		webhook_url: 'webhook_url_pd',
-		oauth: 'oauth_pd',
-	},
-	{
-		webhook_url: 'webhook_url_reskill',
-		oauth: 'oauth_reskill',
-	},
-];
-// デバッグ用
-// const slack_workspace_property_keys_list = [
-// 	{
-// 		webhook_url: 'webhook_url_test',
-// 		oauth: 'oauth_reskill',
-// 	},
-// 	{
-// 		webhook_url: 'webhook_url_pd_test',
-// 		oauth: 'oauth_pd',
-// 	},
-// ];
-
 function autoSlack(e) {
 	let slack_workspace_property_keys_list = makeSlackWorkspacePropertyKeysList();
 	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
@@ -65,10 +42,6 @@ function sendSlack(e, token_key, webhook_url_key) {
 
 // SpreadsheetからSlackのWebhook URLを取得する
 function getPersonalWebhookUrlFromSheet(email) {
-	// let config = {
-	// 	sheet_id: '1Mda9n-b2JmfQW4MbyhAS_LoBTn-d3C-30VOshrrLD9k',
-	// 	sheet_name: 'webhook_urls',
-	// };
 	let config = makeWebhookUrlTableConfig();
 	var spreadsheet = SpreadsheetApp.openById(config.sheet_id);
 	var sheet = spreadsheet.getSheetByName(config.sheet_name);
@@ -86,8 +59,6 @@ function getPersonalWebhookUrlFromSheet(email) {
 }
 
 function addRowToSpreadsheet(e) {
-	// const spreadsheetId = '15SPAug5rR6cXhblNrUl_VbycjbDMsSyhbk1mdaheupw'; // 追加するスプレッドシートのIDを指定
-	// const sheetName = '元データ_投稿'; // 追加する行のあるシートの名前を指定
 	let config = makeSendingLogTableConfig();
 
 	var spreadsheet = SpreadsheetApp.openById(config.spreadsheetId);
@@ -95,15 +66,15 @@ function addRowToSpreadsheet(e) {
 
 	let sendDateFormatted = getDateFormated(e);
 
-	// const channel_id = '<#C0547T4KK61>'; // 追加する行のデータを指定
-	// const group_name = '23卒'; // 追加する行のデータを指定
 	let email = getEmailFromEvent(e);
 	var newRowData = [
 		sendDateFormatted,
-		config.channel_id,
-		config.group_name,
+		config.channelId,
+		config.groupName,
 		email,
 	]; // 追加する行のデータを指定
+
+	console.log(newRowData);
 
 	sheet.appendRow(newRowData);
 	console.log('新しい行が追加されました。');
