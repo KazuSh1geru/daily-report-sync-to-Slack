@@ -82,7 +82,9 @@ function getPersonalWebhookUrlFromSheet(email) {
 
 // getPersonalWebhookUrlFromSheetのデバッグ用
 function testGetPersonalWebhookUrlFromSheet() {
-	let email = 'takakusagi.kazushi@lmi.ne.jp';
+	var scriptProperties = PropertiesService.getScriptProperties();
+	var email = scriptProperties.getProperty("test_email_address");
+
 	let webhook_url = getPersonalWebhookUrlFromSheet(email);
 	console.log(webhook_url);
 }
