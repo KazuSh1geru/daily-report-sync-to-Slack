@@ -58,28 +58,6 @@ function getPersonalWebhookUrlFromSheet(email) {
 	return null; // 見つからなかった場合はnullを返す
 }
 
-function addRowToSpreadsheet(e) {
-	let config = makeSendingLogTableConfig();
-
-	var spreadsheet = SpreadsheetApp.openById(config.spreadsheetId);
-	var sheet = spreadsheet.getSheetByName(config.sheetName);
-
-	let sendDateFormatted = getDateFormated(e);
-
-	let email = getEmailFromEvent(e);
-	var newRowData = [
-		sendDateFormatted,
-		config.channelId,
-		config.groupName,
-		email,
-	]; // 追加する行のデータを指定
-
-	console.log(newRowData);
-
-	sheet.appendRow(newRowData);
-	console.log('新しい行が追加されました。');
-}
-
 // getPersonalWebhookUrlFromSheetのデバッグ用
 function testGetPersonalWebhookUrlFromSheet() {
 	var scriptProperties = PropertiesService.getScriptProperties();
