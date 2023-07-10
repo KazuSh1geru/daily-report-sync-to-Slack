@@ -22,7 +22,6 @@ const slack_workspace_property_keys_list = [
 ];
 
 function autoSlack(e) {
-
 	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
 		var property_keys = slack_workspace_property_keys_list[i];
 		var webhook_url_key = property_keys.webhook_url;
@@ -83,7 +82,7 @@ function getPersonalWebhookUrlFromSheet(email) {
 
 // getPersonalWebhookUrlFromSheetのデバッグ用
 function testGetPersonalWebhookUrlFromSheet() {
-	let email = 'takakusagi.kazushi@lmi.ne.jp'
+	let email = 'takakusagi.kazushi@lmi.ne.jp';
 	let webhook_url = getPersonalWebhookUrlFromSheet(email);
 	console.log(webhook_url);
 }
