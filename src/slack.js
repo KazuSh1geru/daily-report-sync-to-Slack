@@ -46,12 +46,3 @@ function getPersonalWebhookUrlFromSheet(email) {
 	console.log(email + 'さんのChannelへ送信できませんでした');
 	return null; // 見つからなかった場合はnullを返す
 }
-
-// getPersonalWebhookUrlFromSheetのデバッグ用
-function testGetPersonalWebhookUrlFromSheet() {
-	var scriptProperties = PropertiesService.getScriptProperties();
-	var email = scriptProperties.getProperty('test_email_address');
-
-	let webhook_url = getPersonalWebhookUrlFromSheet(email);
-	console.log(webhook_url);
-}
