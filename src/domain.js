@@ -1,26 +1,32 @@
-function makeSlackWorkspacePropertyKeysList() {
+function makeSlackWorkspacePropertyKeysList(env) {
+	let slack_workspace_property_keys_list = [];
 	// 本番用
-	let slack_workspace_property_keys_list = [
-		{
-			webhook_url: 'webhook_url_pd',
-			oauth: 'oauth_pd',
-		},
-		{
-			webhook_url: 'webhook_url_reskill',
-			oauth: 'oauth_reskill',
-		},
-	];
-	// デバッグ用
-	// let slack_workspace_property_keys_list = [
-	// 	{
-	// 		webhook_url: 'webhook_url_test',
-	// 		oauth: 'oauth_reskill',
-	// 	},
-	// 	{
-	// 		webhook_url: 'webhook_url_pd_test',
-	// 		oauth: 'oauth_pd',
-	// 	},
-	// ];
+	if (env == 'PROD') {
+		slack_workspace_property_keys_list = [
+			{
+				webhook_url: 'webhook_url_pd',
+				oauth: 'oauth_pd',
+			},
+			{
+				webhook_url: 'webhook_url_reskill',
+				oauth: 'oauth_reskill',
+			},
+		];
+		// デバッグ用
+	} else if (env == 'DEV') {
+		slack_workspace_property_keys_list = [
+			{
+				webhook_url: 'webhook_url_test',
+				oauth: 'oauth_reskill',
+			},
+			{
+				webhook_url: 'webhook_url_pd_test',
+				oauth: 'oauth_pd',
+			},
+		];
+	} else {
+		console.log('environment not set.');
+	}
 	return slack_workspace_property_keys_list;
 }
 
