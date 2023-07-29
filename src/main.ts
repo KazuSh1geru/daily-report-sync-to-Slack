@@ -1,5 +1,5 @@
-function autoSlack(e) {
-	let env = 'PROD';
+function autoSlack(e: any) {
+	let env: string = 'PROD';
 	let slack_workspace_property_keys_list =
 		makeSlackWorkspacePropertyKeysList(env);
 	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {

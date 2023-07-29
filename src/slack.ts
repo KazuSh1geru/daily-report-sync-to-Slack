@@ -1,4 +1,4 @@
-function sendSlack(e, token_key, webhook_url_key) {
+function sendSlack(e: any, token_key: string, webhook_url_key: string) {
 	// Slackの本文
 	let body = createBodyFromResponse(e, token_key);
 	let data = {
@@ -30,10 +30,14 @@ function sendSlack(e, token_key, webhook_url_key) {
 }
 
 // SpreadsheetからSlackのWebhook URLを取得する
-function getPersonalWebhookUrlFromSheet(email) {
+function getPersonalWebhookUrlFromSheet(email: string) {
 	let config = makeWebhookUrlTableConfig();
 	var spreadsheet = SpreadsheetApp.openById(config.sheet_id);
 	var sheet = spreadsheet.getSheetByName(config.sheet_name);
+	if (!sheet) {
+		// シートが見つからなかった場合のエラーハンドリング
+		throw new Error("指定されたシートが見つかりませんでした。");
+	}
 	var dataRange = sheet.getDataRange();
 	var values = dataRange.getValues();
 
