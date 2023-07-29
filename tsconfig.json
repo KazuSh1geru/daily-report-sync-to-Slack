@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"lib": [],
+		"strict": true,
+		"exactOptionalPropertyTypes": true
+	},
+	"exclude": [
+		"node_modules"
+	]
+}
