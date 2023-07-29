@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
-		"lib": [],
+    "lib": ["es5", "es6", "dom"],
 		"strict": true,
-		"exactOptionalPropertyTypes": true
+		"exactOptionalPropertyTypes": true,
+    "target": "es5",
 	},
 	"exclude": [
 		"node_modules"
