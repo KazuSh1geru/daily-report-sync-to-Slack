@@ -36,7 +36,7 @@ function getPersonalWebhookUrlFromSheet(email: string) {
 	var sheet = spreadsheet.getSheetByName(config.sheet_name);
 	if (!sheet) {
 		// シートが見つからなかった場合のエラーハンドリング
-		throw new Error("指定されたシートが見つかりませんでした。");
+		throw new Error('指定されたシートが見つかりませんでした。');
 	}
 	var dataRange = sheet.getDataRange();
 	var values = dataRange.getValues();

@@ -5,7 +5,7 @@ function addRowToSpreadsheet(e: any) {
 	var sheet = spreadsheet.getSheetByName(config.sheetName);
 	if (!sheet) {
 		// シートが見つからなかった場合のエラーハンドリング
-		throw new Error("指定されたシートが見つかりませんでした。");
+		throw new Error('指定されたシートが見つかりませんでした。');
 	}
 	let sendDateFormatted = getDateFormated(e);
 
@@ -17,7 +17,7 @@ function addRowToSpreadsheet(e: any) {
 		email,
 	]; // 追加する行のデータを指定
 
-		console.log(newRowData);
+	console.log(newRowData);
 
 	sheet.appendRow(newRowData);
 	console.log('新しい行が追加されました。');
