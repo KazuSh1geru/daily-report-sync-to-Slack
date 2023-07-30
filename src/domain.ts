@@ -1,43 +1,43 @@
 function makeSlackWorkspacePropertyKeysList(env: string) {
-	let slack_workspace_property_keys_list: {
-		webhook_url: string;
+	let slackWorkspacePropertyKeysList: {
+		webhookUrl: string;
 		oauth: string;
 	}[] = [];
 	// 本番用
 	if (env == 'PROD') {
-		slack_workspace_property_keys_list = [
+		slackWorkspacePropertyKeysList = [
 			{
-				webhook_url: 'webhook_url_pd',
+				webhookUrl: 'webhookUrl_pd',
 				oauth: 'oauth_pd',
 			},
 			{
-				webhook_url: 'webhook_url_reskill',
+				webhookUrl: 'webhookUrl_reskill',
 				oauth: 'oauth_reskill',
 			},
 		];
 		// デバッグ用
 	} else if (env == 'DEV') {
-		slack_workspace_property_keys_list = [
+		slackWorkspacePropertyKeysList = [
 			{
-				webhook_url: 'webhook_url_test',
+				webhookUrl: 'webhookUrl_test',
 				oauth: 'oauth_reskill',
 			},
 			{
-				webhook_url: 'webhook_url_pd_test',
+				webhookUrl: 'webhookUrl_pd_test',
 				oauth: 'oauth_pd',
 			},
 		];
 	} else {
 		console.log('environment not set.');
 	}
-	return slack_workspace_property_keys_list;
+	return slackWorkspacePropertyKeysList;
 }
 
 // Webhook URLの対応関係を保存したテーブル(Spreadsheet)を取得する
 function makeWebhookUrlTableConfig() {
-	let config: { sheet_id: string; sheet_name: string } = {
-		sheet_id: '1Mda9n-b2JmfQW4MbyhAS_LoBTn-d3C-30VOshrrLD9k',
-		sheet_name: 'webhook_urls',
+	let config: { sheetId: string; sheetName: string } = {
+		sheetId: '1Mda9n-b2JmfQW4MbyhAS_LoBTn-d3C-30VOshrrLD9k',
+		sheetName: 'webhookUrls',
 	};
 	return config;
 }

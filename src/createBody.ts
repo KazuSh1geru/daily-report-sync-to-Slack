@@ -1,18 +1,18 @@
 function createBodyFromResponse(e: any, token_key: string) {
 	let itemResponses: any = e.response.getItemResponses();
 
-	// user_idを取得する
+	// user IDを取得する
 	let email: string = getEmailFromEvent(e);
 	let userId: string = getSlackUserIdByEmail(email, token_key);
 	// 必要なデータを抽出する
 	let sendDateFormatted = getDateFormated(e);
 
-	let free_space = itemResponses[1].getResponse();
+	let freeSpace = itemResponses[1].getResponse();
 
 	let body = `
 <@${userId}>さんが${sendDateFormatted}の日報を投稿しました
 
-${free_space}
+${freeSpace}
 `;
 
 	// 共通化してbodyを作成する

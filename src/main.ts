@@ -6,13 +6,13 @@ function main(e: any) {
 }
 
 function autoSlack(e: any, env: string) {
-	let slack_workspace_property_keys_list =
+	let slackWorkspacePropertyKeysList =
 		makeSlackWorkspacePropertyKeysList(env);
-	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
-		var property_keys = slack_workspace_property_keys_list[i];
-		var webhook_url_key = property_keys.webhook_url;
+	for (var i = 0; i < slackWorkspacePropertyKeysList.length; i++) {
+		var property_keys = slackWorkspacePropertyKeysList[i];
+		var webhookUrl_key = property_keys.webhookUrl;
 		var token_key = property_keys.oauth;
 		// Slackへ送信する
-		sendSlack(e, token_key, webhook_url_key);
+		sendSlack(e, token_key, webhookUrl_key);
 	}
 }
