@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Kazushi Takakusagi <kazushi.takakusagi@gmail.com>",
   "dependencies": {
     "@types/google-apps-script": "^1.0.64"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.6"
   }
 }

@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+    "lib": ["es5", "es6", "dom"],
+		"strict": true,
+		"exactOptionalPropertyTypes": true,
+    "target": "es5",
+    "noEmit": true,
+	},
+	"exclude": [
+		"node_modules"
+	]
+}
