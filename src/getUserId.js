@@ -1,27 +1,26 @@
 function getSlackUserIdByEmail(email, token_key) {
 	// userIdを取得するAPIのURL
-	var url = 'https://slack.com/api/users.lookupByEmail';
+	const url = 'https://slack.com/api/users.lookupByEmail';
 	console.log('token_key: ' + token_key);
 	// tokenに変換する
-	var scriptProperties = PropertiesService.getScriptProperties();
-	var token = scriptProperties.getProperty(token_key);
+	const scriptProperties = PropertiesService.getScriptProperties();
+	const token = scriptProperties.getProperty(token_key);
 
-	var payload = {
+	const payload = {
 		email: email,
 		token: token,
 	};
-	var options = {
+	const options = {
 		method: 'GET',
 		payload: payload,
 		headers: {
 			contentType: 'x-www-form-urlencoded',
 		},
 	};
-	var json_data = UrlFetchApp.fetch(url, options); //APIリクエスト実行と結果の格納
+	const json_data = UrlFetchApp.fetch(url, options); //APIリクエスト実行と結果の格納
 	data = JSON.parse(json_data); //結果はJSONデータで返されるのでデコード
 	if (data.ok) {
-		var userId = data.user.id;
-		return userId;
+		return data.user.id;
 	} else {
 		// エラーハンドリングを行う場合は適宜追加してください
 		console.log('Error: ' + data.error);
