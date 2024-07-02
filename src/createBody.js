@@ -46,5 +46,6 @@ function formatDate(dateString) {
 
 function getEmailFromEvent(e) {
 	const respondentEmail = e.response.getRespondentEmail();
+	console.log(`respondentEmail: ${respondentEmail}`);
 	return respondentEmail;
 }

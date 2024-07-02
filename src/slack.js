@@ -14,14 +14,15 @@ function sendSlack(e, token_key, webhook_url_key) {
 	// 送信チャンネルを分岐させる
 	if (token_key == 'oauth_pd') {
 		const scriptProperties = PropertiesService.getScriptProperties();
-		const webhook_url = scriptProperties.getProperty(webhook_url_key);
+		let webhook_url = scriptProperties.getProperty(webhook_url_key);
 		UrlFetchApp.fetch(webhook_url, options);
 
 		// 日報投稿ログを記録する
 		addRowToSpreadsheet(e);
 	} else if (token_key == 'oauth_reskill') {
 		const email = getEmailFromEvent(e);
-		const webhook_url = getPersonalWebhookUrlFromSheet(email);
+		let webhook_url = getPersonalWebhookUrlFromSheet(email);
+		console.log("email: " + email + ", webhook_url: " + webhook_url);
 		UrlFetchApp.fetch(webhook_url, options);
 	} else {
 		console.log(`存在しないtoken_key: ${token_key}Slackへ送信できませんでした`);
