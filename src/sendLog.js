@@ -1,13 +1,13 @@
 function addRowToSpreadsheet(e) {
-	let config = makeSendingLogTableConfig();
+	const config = makeSendingLogTableConfig();
 
-	var spreadsheet = SpreadsheetApp.openById(config.spreadsheetId);
-	var sheet = spreadsheet.getSheetByName(config.sheetName);
+	const spreadsheet = SpreadsheetApp.openById(config.spreadsheetId);
+	const sheet = spreadsheet.getSheetByName(config.sheetName);
 
-	let sendDateFormatted = getDateFormated(e);
+	const sendDateFormatted = getDateFormated(e);
 
-	let email = getEmailFromEvent(e);
-	var newRowData = [
+	const email = getEmailFromEvent(e);
+	const newRowData = [
 		sendDateFormatted,
 		config.channelId,
 		config.groupName,

@@ -1,8 +1,8 @@
 function autoSlack(e) {
-	let env = 'PROD';
+	const env = 'PROD';
 	// TODO: テスト用のパスを作成する
-	// let env = 'DEV';
-	let slack_workspace_property_keys_list =
+	// const env = 'DEV';
+	const slack_workspace_property_keys_list =
 		makeSlackWorkspacePropertyKeysList(env);
 	for (var i = 0; i < slack_workspace_property_keys_list.length; i++) {
 		var property_keys = slack_workspace_property_keys_list[i];

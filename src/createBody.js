@@ -1,14 +1,14 @@
 function createBodyFromResponse(e, token_key) {
 	// フォームのデータを取得する。すべての質問と回答を取得する
-	let itemResponses = e.response.getItemResponses();
+	const itemResponses = e.response.getItemResponses();
 
 	// user_idを取得する
-	let email = getEmailFromEvent(e);
-	let userId = getSlackUserIdByEmail(email, token_key);
+	const email = getEmailFromEvent(e);
+	const userId = getSlackUserIdByEmail(email, token_key);
 	// 必要なデータを抽出する
-	let sendDateFormatted = getDateFormated(e);
+	const sendDateFormatted = getDateFormated(e);
 
-	let free_space = itemResponses[1].getResponse();
+	const free_space = itemResponses[1].getResponse();
 
 	let body = `
 <@${userId}>さんが${sendDateFormatted}の日報を投稿しました
@@ -30,10 +30,10 @@ ${response}
 
 function getDateFormated(e) {
 	// フォームのデータを取得する。すべての質問と回答を取得する
-	let itemResponses = e.response.getItemResponses();
+	const itemResponses = e.response.getItemResponses();
 	// 必要なデータを抽出する
-	let sendDate = itemResponses[0].getResponse();
-	let sendDateFormatted = formatDate(sendDate);
+	const sendDate = itemResponses[0].getResponse();
+	const sendDateFormatted = formatDate(sendDate);
 	return sendDateFormatted;
 }
 
@@ -45,6 +45,6 @@ function formatDate(dateString) {
 }
 
 function getEmailFromEvent(e) {
-	var respondentEmail = e.response.getRespondentEmail();
+	const respondentEmail = e.response.getRespondentEmail();
 	return respondentEmail;
 }
