@@ -4,8 +4,7 @@ function makeSlackWorkspacePropertyKeysList(env) {
 	if (env == 'PROD') {
 		slack_workspace_property_keys_list = [
 			{
-				// webhook_url: 'webhook_url_pd',
-				webhook_url: 'webhook_url_pd_test', // TODO: テスト用なので削除する
+				webhook_url: 'webhook_url_pd',
 				oauth: 'oauth_pd',
 			},
 			{
