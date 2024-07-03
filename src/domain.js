@@ -16,12 +16,12 @@ function makeSlackWorkspacePropertyKeysList(env) {
 	} else if (env == 'DEV') {
 		slack_workspace_property_keys_list = [
 			{
-				webhook_url: 'webhook_url_test',
-				oauth: 'oauth_reskill',
-			},
-			{
 				webhook_url: 'webhook_url_pd_test',
 				oauth: 'oauth_pd',
+			},
+			{
+				webhook_url: 'webhook_url_test',
+				oauth: 'oauth_reskill',
 			},
 		];
 	} else {

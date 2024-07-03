@@ -15,6 +15,7 @@ function sendSlack(e, token_key, webhook_url_key) {
 	if (token_key == 'oauth_pd') {
 		const scriptProperties = PropertiesService.getScriptProperties();
 		let webhook_url = scriptProperties.getProperty(webhook_url_key);
+		console.log('webhook_url: ' + webhook_url);
 		UrlFetchApp.fetch(webhook_url, options);
 
 		// 日報投稿ログを記録する
@@ -27,23 +28,28 @@ function sendSlack(e, token_key, webhook_url_key) {
 	} else {
 		console.log(`存在しないtoken_key: ${token_key}Slackへ送信できませんでした`);
 	}
-	console.log('webhook: ' + webhook_url);
 }
 
 // SpreadsheetからSlackのWebhook URLを取得する
 function getPersonalWebhookUrlFromSheet(email) {
-	const config = makeWebhookUrlTableConfig();
-	const spreadsheet = SpreadsheetApp.openById(config.sheet_id);
-	const sheet = spreadsheet.getSheetByName(config.sheet_name);
-	const dataRange = sheet.getDataRange();
-	const values = dataRange.getValues();
-
-	for (var i = 0; i < values.length; i++) {
-		if (values[i][0] == email) {
-			console.log(email + 'さんのChannelへ送信します');
-			return values[i][1]; // 値の位置に応じて変更
+	try {
+		const config = makeWebhookUrlTableConfig();
+		const spreadsheet = SpreadsheetApp.openById(config.sheet_id);
+		const sheet = spreadsheet.getSheetByName(config.sheet_name);
+		const dataRange = sheet.getDataRange();
+		const values = dataRange.getValues();
+		console.log(values);
+		for (var i = 0; i < values.length; i++) {
+			// スプレッドシートのデータを確認する
+			console.log("values[i][0]: " + values[i][0]);
+			console.log("values[i][1]: " + values[i][1]);
+			if (values[i][0] == email) {
+				console.log(email + 'さんのChannelへ送信します');
+				return values[i][1]; // 値の位置に応じて変更
+			}
 		}
+	} catch (error) {
+		console.log('Error: ' + e);
+		console.log(email + 'さんのChannelへ送信できませんでした');
 	}
-	console.log(email + 'さんのChannelへ送信できませんでした');
-	return null; // 見つからなかった場合はnullを返す
 }
